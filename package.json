@@ -1,0 +1,35 @@
+{
+  "name": "extension-publish",
+  "version": "1.0.0",
+  "description": "GitHub Action to publish browser extensions to Chrome Web Store, Firefox Add-ons, and Edge Add-ons.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node24 --format=cjs --minify --outfile=dist/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "creeperkatze",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "^24"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.3.0",
+      "onFail": "download"
+    }
+  },
+  "dependencies": {
+    "@actions/core": "^1.11.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "esbuild": "^0.28.0",
+    "typescript": "^5.8.3"
+  }
+}

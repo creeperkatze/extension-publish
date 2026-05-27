@@ -1,0 +1,98 @@
+name: 'Publish Browser Extension'
+description: 'Upload and publish browser extensions to Chrome Web Store, Firefox Add-ons, and Edge Add-ons.'
+author: 'creeperkatze'
+
+branding:
+  icon: 'upload-cloud'
+  color: 'blue'
+
+inputs:
+  # Chrome Web Store
+  chrome-client-id:
+    description: >
+      OAuth2 client ID from Google Cloud Console.
+      Required for Chrome Web Store publishing.
+    required: false
+
+  chrome-client-secret:
+    description: >
+      OAuth2 client secret from Google Cloud Console.
+      Required for Chrome Web Store publishing.
+    required: false
+
+  chrome-refresh-token:
+    description: >
+      Long-lived OAuth2 refresh token used to obtain short-lived access tokens.
+      Required for Chrome Web Store publishing.
+    required: false
+
+  chrome-publisher-id:
+    description: >
+      Publisher ID found in the Chrome Developer Dashboard under Publisher > Settings.
+      Required for Chrome Web Store publishing.
+    required: false
+
+  chrome-extension-id:
+    description: >
+      The extension item ID in the Chrome Web Store (e.g. "aapbdbdomjkkjkaonfhkkikfgjllcleb").
+      Required for Chrome Web Store publishing.
+    required: false
+
+  chrome-zip-path:
+    description: >
+      Path to the extension .zip file to upload to the Chrome Web Store.
+      Required for Chrome Web Store publishing.
+    required: false
+
+  chrome-publish:
+    description: >
+      Whether to publish the extension after a successful upload.
+      Set to "false" to only upload without publishing (e.g. for draft review).
+    required: false
+    default: 'true'
+
+  chrome-publish-type:
+    description: >
+      Controls publication timing.
+      - "DEFAULT_PUBLISH": publish immediately to all users.
+      - "STAGED_PUBLISH": defer to a staged rollout controlled by chrome-deploy-percentage.
+    required: false
+    default: 'DEFAULT_PUBLISH'
+
+  chrome-deploy-percentage:
+    description: >
+      Percentage of users (0-100) to roll out to when using STAGED_PUBLISH.
+      Ignored when chrome-publish-type is DEFAULT_PUBLISH.
+    required: false
+
+  chrome-skip-review:
+    description: >
+      Attempt to bypass the Chrome Web Store review process if the item is eligible.
+      Returns a validation error if the item still requires review.
+    required: false
+    default: 'false'
+
+outputs:
+  # Chrome Web Store
+  chrome-upload-state:
+    description: >
+      Upload state returned by the Chrome Web Store API after the upload step.
+      Possible values: UPLOAD_STATE_UNSPECIFIED, SUCCESS, FAILURE, IN_PROGRESS, NOT_FOUND.
+
+  chrome-crx-version:
+    description: >
+      Extension version read from the manifest inside the uploaded package.
+      Empty while an upload is still in progress.
+
+  chrome-publish-state:
+    description: >
+      Submission state returned by the Chrome Web Store API after the publish step.
+      Possible values: ITEM_PENDING_REVIEW, PUBLISHED, REJECTED, REMOVED, etc.
+
+  chrome-item-id:
+    description: >
+      Item identifier echoed back by the Chrome Web Store API.
+
+runs:
+  using: 'node24'
+  main: 'dist/index.js'
