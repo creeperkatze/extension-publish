@@ -1,6 +1,6 @@
 {
   "name": "extension-publish",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "GitHub Action to publish browser extensions to Chrome Web Store, Firefox Add-ons, and Edge Add-ons.",
   "main": "dist/index.js",
   "scripts": {
