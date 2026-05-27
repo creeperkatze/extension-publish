@@ -122,6 +122,43 @@ inputs:
       Supports a plain string or a JSON object keyed by locale (e.g. '{"en-US":"..."}').
     required: false
 
+  # Edge Add-ons
+  edge-api-key:
+    description: >
+      API key from Partner Center (Publish API page).
+      Required for Edge Add-ons publishing.
+    required: false
+
+  edge-client-id:
+    description: >
+      Client ID from Partner Center (Publish API page).
+      Required for Edge Add-ons publishing.
+    required: false
+
+  edge-product-id:
+    description: >
+      Product ID (128-bit GUID) of the extension in Partner Center.
+      Found in the Extension overview page or in the dashboard URL.
+    required: false
+
+  edge-zip-path:
+    description: >
+      Path to the .zip file to upload to Microsoft Edge Add-ons.
+      Required for Edge Add-ons publishing.
+    required: false
+
+  edge-publish:
+    description: >
+      Whether to publish the draft after a successful upload.
+      Set to "false" to only upload the package without submitting for review.
+    required: false
+    default: 'true'
+
+  edge-notes:
+    description: >
+      Certification notes for Microsoft reviewers.
+    required: false
+
 outputs:
   # Chrome Web Store
   chrome-upload-state:
@@ -157,6 +194,25 @@ outputs:
     description: >
       Review state of the new version after submission.
       Typical values: nominated, public, disabled, beta, etc.
+
+  # Edge Add-ons
+  edge-upload-operation-id:
+    description: >
+      Operation ID returned in the Location header after a successful package upload.
+
+  edge-upload-status:
+    description: >
+      Final status of the upload operation.
+      Possible values: Succeeded, Failed, InProgress.
+
+  edge-publish-operation-id:
+    description: >
+      Operation ID returned in the Location header after triggering publish.
+
+  edge-publish-status:
+    description: >
+      Final status of the publish operation.
+      Possible values: Succeeded, Failed, InProgress.
 
 runs:
   using: 'node24'
