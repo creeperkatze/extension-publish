@@ -138,6 +138,9 @@ export async function publishToFirefox(): Promise<void> {
       compatibility[platform] = { ...(min && { min }), ...(max && { max }) }
     }
   }
+  if (compatibility['android'] && !compatibility['firefox']) {
+    compatibility['firefox'] = {}
+  }
   const resolvedCompatibility = Object.keys(compatibility).length > 0 ? compatibility : undefined
 
   // Upload
