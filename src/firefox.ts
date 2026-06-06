@@ -124,21 +124,18 @@ export async function publishToFirefox(): Promise<void> {
   const approvalNotes = core.getInput('firefox-approval-notes') || undefined
   const releaseNotes = core.getInput('firefox-release-notes') || undefined
 
-  const firefoxMin = core.getInput('firefox-compatibility-firefox-min')
-  const firefoxMax = core.getInput('firefox-compatibility-firefox-max')
-  const androidMin = core.getInput('firefox-compatibility-android-min')
-  const androidMax = core.getInput('firefox-compatibility-android-max')
   const compatibility: Record<string, unknown> = {}
-  if (firefoxMin || firefoxMax) {
-    compatibility['firefox'] = {
-      ...(firefoxMin && { min: firefoxMin }),
-      ...(firefoxMax && { max: firefoxMax }),
-    }
-  }
-  if (androidMin || androidMax) {
-    compatibility['android'] = {
-      ...(androidMin && { min: androidMin }),
-      ...(androidMax && { max: androidMax }),
+  for (const [platform, inputName] of [
+    ['firefox', 'firefox-compatibility-firefox'],
+    ['android', 'firefox-compatibility-android'],
+  ] as const) {
+    const raw = core.getInput(inputName).trim()
+    if (!raw) continue
+    if (raw === 'true') {
+      compatibility[platform] = {}
+    } else {
+      const [min, max] = raw.split(',').map(s => s.trim())
+      compatibility[platform] = { ...(min && { min }), ...(max && { max }) }
     }
   }
   const resolvedCompatibility = Object.keys(compatibility).length > 0 ? compatibility : undefined

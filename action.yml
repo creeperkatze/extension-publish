@@ -122,20 +122,18 @@ inputs:
       Supports a plain string or a JSON object keyed by locale (e.g. '{"en-US":"..."}').
     required: false
 
-  firefox-compatibility-firefox-min:
-    description: Minimum Firefox desktop version this release is compatible with (e.g. "109.0").
+  firefox-compatibility-firefox:
+    description: >
+      Firefox desktop compatibility. Use "true" to support all versions, a single version string
+      (e.g. "109.0") to set a minimum, or a comma-separated range (e.g. "109.0, 120.0") to set
+      both a minimum and maximum.
     required: false
 
-  firefox-compatibility-firefox-max:
-    description: Maximum Firefox desktop version this release is compatible with (e.g. "120.0").
-    required: false
-
-  firefox-compatibility-android-min:
-    description: Minimum Firefox for Android version this release is compatible with (e.g. "113.0").
-    required: false
-
-  firefox-compatibility-android-max:
-    description: Maximum Firefox for Android version this release is compatible with (e.g. "120.0").
+  firefox-compatibility-android:
+    description: >
+      Firefox for Android compatibility. Use "true" to support all versions, a single version
+      string (e.g. "113.0") to set a minimum, or a comma-separated range (e.g. "113.0, 120.0")
+      to set both a minimum and maximum.
     required: false
 
   # Edge Add-ons
