@@ -178,7 +178,7 @@ outputs:
   chrome-upload-state:
     description: >
       Upload state returned by the Chrome Web Store API after the upload step.
-      Possible values: UPLOAD_STATE_UNSPECIFIED, SUCCESS, FAILURE, IN_PROGRESS, NOT_FOUND.
+      Possible values: UPLOAD_STATE_UNSPECIFIED, SUCCESS, SUCCEEDED, FAILURE, IN_PROGRESS, NOT_FOUND.
 
   chrome-crx-version:
     description: >

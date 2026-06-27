@@ -8,6 +8,7 @@ const BASE_URL = 'https://chromewebstore.googleapis.com'
 type UploadState =
   | 'UPLOAD_STATE_UNSPECIFIED'
   | 'SUCCESS'
+  | 'SUCCEEDED'
   | 'FAILURE'
   | 'IN_PROGRESS'
   | 'NOT_FOUND'
@@ -195,7 +196,7 @@ export async function publishToChrome(): Promise<void> {
   if (uploadState === 'FAILURE') {
     throw new Error('Chrome Web Store: Upload failed')
   }
-  if (uploadState !== 'SUCCESS') {
+  if (uploadState !== 'SUCCESS' && uploadState !== 'SUCCEEDED') {
     throw new Error(`Chrome Web Store: Unexpected upload state "${uploadState}"`)
   }
 
