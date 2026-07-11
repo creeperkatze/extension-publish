@@ -1,6 +1,6 @@
 import * as core from '@actions/core'
 import { readFileSync } from 'node:fs'
-import { assertOk } from './utils'
+import { assertOk, PublishResult } from './utils'
 
 const BASE_URL = 'https://api.addons.microsoftedge.microsoft.com'
 
@@ -103,7 +103,7 @@ async function publishDraft(
   return assertAccepted(response, 'Edge publish')
 }
 
-export async function publishToEdge(): Promise<void> {
+export async function publishToEdge(): Promise<PublishResult> {
   const apiKey = core.getInput('edge-api-key')
   const clientId = core.getInput('edge-client-id')
   const productId = core.getInput('edge-product-id')
@@ -111,7 +111,7 @@ export async function publishToEdge(): Promise<void> {
 
   if (!apiKey && !clientId && !productId && !zipPath) {
     core.info('Edge Add-ons: No inputs provided, skipping')
-    return
+    return { status: 'skipped', details: 'No inputs provided' }
   }
 
   const shouldPublish = core.getInput('edge-publish') !== 'false'
@@ -140,7 +140,7 @@ export async function publishToEdge(): Promise<void> {
   // Publish
   if (!shouldPublish) {
     core.info('Edge Add-ons: Skipping publish')
-    return
+    return { status: 'success', details: `Uploaded, not published (upload status: ${uploadStatus.status})` }
   }
 
   core.info('Edge Add-ons: Publishing draft')
@@ -163,4 +163,6 @@ export async function publishToEdge(): Promise<void> {
   }
 
   core.info(`Edge Add-ons: Done, status: ${publishStatus.status}`)
+
+  return { status: 'success', details: `Upload status: ${uploadStatus.status}, publish status: ${publishStatus.status}` }
 }

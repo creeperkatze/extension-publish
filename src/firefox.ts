@@ -1,7 +1,7 @@
 import * as core from '@actions/core'
 import { readFileSync } from 'node:fs'
 import { basename } from 'node:path'
-import { assertOk, makeJwt } from './utils'
+import { assertOk, makeJwt, PublishResult } from './utils'
 
 const BASE_URL = 'https://addons.mozilla.org/api/v5'
 
@@ -108,7 +108,7 @@ async function createVersion(
   return (await response.json()) as VersionResponse
 }
 
-export async function publishToFirefox(): Promise<void> {
+export async function publishToFirefox(): Promise<PublishResult> {
   const apiKey = core.getInput('firefox-api-key')
   const apiSecret = core.getInput('firefox-api-secret')
   const extensionId = core.getInput('firefox-extension-id')
@@ -116,7 +116,7 @@ export async function publishToFirefox(): Promise<void> {
 
   if (!apiKey && !apiSecret && !extensionId && !xpiPath) {
     core.info('Firefox Add-ons: No inputs provided, skipping')
-    return
+    return { status: 'skipped', details: 'No inputs provided' }
   }
 
   const channel = (core.getInput('firefox-channel') || 'listed') as 'listed' | 'unlisted'
@@ -168,4 +168,6 @@ export async function publishToFirefox(): Promise<void> {
   core.setOutput('firefox-version-id', String(version.id))
   core.setOutput('firefox-version-state', version.file.status)
   core.info(`Firefox Add-ons: Done, version: ${version.version}, state: ${version.file.status}`)
+
+  return { status: 'success', version: version.version, details: `Channel: ${channel}, state: ${version.file.status}` }
 }

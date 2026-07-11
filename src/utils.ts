@@ -1,5 +1,11 @@
 import { createHmac, randomUUID } from 'node:crypto'
 
+export interface PublishResult {
+  status: 'success' | 'skipped'
+  version?: string
+  details?: string
+}
+
 export function b64url(data: string | Buffer): string {
   const buf = typeof data === 'string' ? Buffer.from(data) : data
   return buf.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
