@@ -88,6 +88,12 @@ All stores are optional, only the stores with provided inputs will run.
 
 ## 📥 Inputs
 
+### Global
+
+| Input | Required | Default | Description |
+|---|---|---|---|
+| `version-file` | No | `package.json` | JSON file with a top-level `version` value, used to replace `{version}` in archive paths |
+
 ### Chrome Web Store
 
 | Input | Required | Default | Description |
@@ -97,7 +103,7 @@ All stores are optional, only the stores with provided inputs will run.
 | `chrome-refresh-token` | Yes | - | Long-lived refresh token |
 | `chrome-publisher-id` | Yes | - | Publisher ID from the developer dashboard |
 | `chrome-extension-id` | Yes | - | Extension item ID |
-| `chrome-zip-path` | Yes | - | Path to the `.zip` to upload |
+| `chrome-zip-path` | Yes | - | Path to the `.zip` to upload.<br>`{version}` is replaced with the version from `version-file` |
 | `chrome-publish` | No | `true` | Set to `false` to upload without publishing |
 | `chrome-publish-type` | No | `DEFAULT_PUBLISH` | `DEFAULT_PUBLISH` or `STAGED_PUBLISH` |
 | `chrome-deploy-percentage` | No | - | Rollout percentage for `STAGED_PUBLISH` (0–100) |
@@ -110,7 +116,7 @@ All stores are optional, only the stores with provided inputs will run.
 | `firefox-api-key` | Yes | - | AMO JWT issuer (API key) |
 | `firefox-api-secret` | Yes | - | AMO JWT secret |
 | `firefox-extension-id` | Yes | - | Add-on ID, slug, or GUID |
-| `firefox-xpi-path` | Yes | - | Path to the `.xpi` or `.zip` to upload |
+| `firefox-xpi-path` | Yes | - | Path to the `.xpi` or `.zip` to upload.<br>`{version}` is replaced with the version from `version-file` |
 | `firefox-channel` | No | `listed` | `listed` or `unlisted` |
 | `firefox-license` | No | - | License slug (e.g. `mpl-2.0`, `mit`) |
 | `firefox-approval-notes` | No | - | Internal notes for Mozilla reviewers |
@@ -125,7 +131,7 @@ All stores are optional, only the stores with provided inputs will run.
 | `edge-api-key` | Yes | - | API key from Partner Center |
 | `edge-client-id` | Yes | - | Client ID from Partner Center |
 | `edge-product-id` | Yes | - | Product ID GUID |
-| `edge-zip-path` | Yes | - | Path to the `.zip` to upload |
+| `edge-zip-path` | Yes | - | Path to the `.zip` to upload.<br>`{version}` is replaced with the version from `version-file` |
 | `edge-publish` | No | `true` | Set to `false` to upload without publishing |
 | `edge-notes` | No | - | Certification notes for Microsoft reviewers |
 

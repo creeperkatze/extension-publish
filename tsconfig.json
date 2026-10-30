@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
+    "types": ["node"],
     "moduleResolution": "Bundler",
     "strict": true,
     "esModuleInterop": true,

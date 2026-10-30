@@ -7,6 +7,12 @@ branding:
   color: 'green'
 
 inputs:
+  version-file:
+    description: >
+      Path to a JSON file whose top-level "version" value is used to fill "{version}" in archive paths.
+      Defaults to package.json and is used by all stores.
+    required: false
+
   # Chrome Web Store
   chrome-client-id:
     description: >
@@ -42,6 +48,7 @@ inputs:
     description: >
       Path to the extension .zip file to upload to the Chrome Web Store.
       Required for Chrome Web Store publishing.
+      `{version}` is replaced with the version from `version-file`
     required: false
 
   chrome-publish:
@@ -95,6 +102,7 @@ inputs:
     description: >
       Path to the .xpi (or .zip) file to upload to Firefox Add-ons.
       Required for Firefox Add-ons publishing.
+      `{version}` is replaced with the version from `version-file`
     required: false
 
   firefox-channel:
@@ -159,6 +167,7 @@ inputs:
     description: >
       Path to the .zip file to upload to Microsoft Edge Add-ons.
       Required for Edge Add-ons publishing.
+      `{version}` is replaced with the version from `version-file`.
     required: false
 
   edge-publish:

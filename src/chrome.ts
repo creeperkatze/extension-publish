@@ -1,6 +1,6 @@
 import * as core from '@actions/core'
 import { readFileSync } from 'node:fs'
-import { assertOk, PublishResult } from './utils'
+import { assertOk, fillVersion, type PublishResult } from './utils'
 
 const OAUTH_TOKEN_URL = 'https://oauth2.googleapis.com/token'
 const BASE_URL = 'https://chromewebstore.googleapis.com'
@@ -156,7 +156,9 @@ export async function publishToChrome(): Promise<PublishResult> {
   const refreshToken = core.getInput('chrome-refresh-token')
   const publisherId = core.getInput('chrome-publisher-id')
   const extensionId = core.getInput('chrome-extension-id')
-  const zipPath = core.getInput('chrome-zip-path')
+  const versionFile = core.getInput('version-file') || undefined
+  const rawZipPath = core.getInput('chrome-zip-path')
+  const zipPath = fillVersion(rawZipPath, versionFile)
 
   if (!clientId && !clientSecret && !refreshToken && !publisherId && !extensionId && !zipPath) {
     core.info('Chrome Web Store: No inputs provided, skipping')

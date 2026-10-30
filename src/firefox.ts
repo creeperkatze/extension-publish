@@ -1,7 +1,7 @@
 import * as core from '@actions/core'
 import { readFileSync } from 'node:fs'
 import { basename } from 'node:path'
-import { assertOk, makeJwt, PublishResult } from './utils'
+import { assertOk, fillVersion, makeJwt, type PublishResult } from './utils'
 
 const BASE_URL = 'https://addons.mozilla.org/api/v5'
 
@@ -112,7 +112,9 @@ export async function publishToFirefox(): Promise<PublishResult> {
   const apiKey = core.getInput('firefox-api-key')
   const apiSecret = core.getInput('firefox-api-secret')
   const extensionId = core.getInput('firefox-extension-id')
-  const xpiPath = core.getInput('firefox-xpi-path')
+  const versionFile = core.getInput('version-file') || undefined
+  const rawXpiPath = core.getInput('firefox-xpi-path')
+  const xpiPath = fillVersion(rawXpiPath, versionFile)
 
   if (!apiKey && !apiSecret && !extensionId && !xpiPath) {
     core.info('Firefox Add-ons: No inputs provided, skipping')

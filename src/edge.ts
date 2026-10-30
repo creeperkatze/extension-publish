@@ -1,6 +1,6 @@
 import * as core from '@actions/core'
 import { readFileSync } from 'node:fs'
-import { assertOk, PublishResult } from './utils'
+import { assertOk, fillVersion, type PublishResult } from './utils'
 
 const BASE_URL = 'https://api.addons.microsoftedge.microsoft.com'
 
@@ -107,7 +107,9 @@ export async function publishToEdge(): Promise<PublishResult> {
   const apiKey = core.getInput('edge-api-key')
   const clientId = core.getInput('edge-client-id')
   const productId = core.getInput('edge-product-id')
-  const zipPath = core.getInput('edge-zip-path')
+  const versionFile = core.getInput('version-file') || undefined
+  const rawZipPath = core.getInput('edge-zip-path')
+  const zipPath = fillVersion(rawZipPath, versionFile)
 
   if (!apiKey && !clientId && !productId && !zipPath) {
     core.info('Edge Add-ons: No inputs provided, skipping')
