@@ -115,7 +115,8 @@ inputs:
 
   firefox-license:
     description: >
-      License slug applied to the new version (e.g. "mpl-2.0", "mit", "apache-2.0").
+      License slug applied to the new version (e.g. "MPL-2.0", "MIT", "Apache-2.0").
+      A list of valid license slugs can be found here: https://mozilla.github.io/addons-server/topics/api/licenses.html
       Required for listed add-ons. Ignored for unlisted.
     required: false
 
