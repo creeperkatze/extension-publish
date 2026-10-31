@@ -2,6 +2,7 @@
 
 A GitHub Action to upload and publish browser extensions to the Chrome Web Store, Firefox Add-ons, and Edge Add-ons.
 
+[![Checks](https://img.shields.io/github/actions/workflow/status/creeperkatze/extension-publish/ci.yml?branch=main&label=checks)](https://github.com/creeperkatze/extension-publish/actions/workflows/ci.yml)
 ![GitHub Issues](https://img.shields.io/github/issues/creeperkatze/extension-publish)
 ![GitHub Pull Requests](https://img.shields.io/github/issues-pr/creeperkatze/extension-publish)
 ![GitHub Repo stars](https://img.shields.io/github/stars/creeperkatze/extension-publish?style=flat)
