@@ -48,7 +48,7 @@ inputs:
     description: >
       Path to the extension .zip file to upload to the Chrome Web Store.
       Required for Chrome Web Store publishing.
-      `{version}` is replaced with the version from `version-file`
+      `{version}` is replaced with the version from `version-file`.
     required: false
 
   chrome-publish:
@@ -95,14 +95,14 @@ inputs:
   firefox-extension-id:
     description: >
       The add-on ID, slug, or GUID (e.g. "{your-addon@example.com}").
-      Required when publishing a new version of an existing add-on.
+      Required for Firefox Add-ons publishing.
     required: false
 
   firefox-xpi-path:
     description: >
       Path to the .xpi (or .zip) file to upload to Firefox Add-ons.
       Required for Firefox Add-ons publishing.
-      `{version}` is replaced with the version from `version-file`
+      `{version}` is replaced with the version from `version-file`.
     required: false
 
   firefox-channel:
@@ -128,7 +128,7 @@ inputs:
   firefox-release-notes:
     description: >
       Version-specific release notes shown to users on AMO.
-      Supports a plain string or a JSON object keyed by locale (e.g. '{"en-US":"..."}').
+      A plain string (used as "en-US") or a JSON object keyed by locale (e.g. '{"en-US":"..."}').
     required: false
 
   firefox-compatibility-firefox:
@@ -143,6 +143,7 @@ inputs:
       Firefox for Android compatibility. Use "true" to support all versions, a single version
       string (e.g. "113.0") to set a minimum, or a comma-separated range (e.g. "113.0, 120.0")
       to set both a minimum and maximum.
+      If set without firefox-compatibility-firefox, all Firefox desktop versions are also supported.
     required: false
 
   # Edge Add-ons
@@ -162,6 +163,7 @@ inputs:
     description: >
       Product ID (128-bit GUID) of the extension in Partner Center.
       Found in the Extension overview page or in the dashboard URL.
+      Required for Edge Add-ons publishing.
     required: false
 
   edge-zip-path:
@@ -188,7 +190,7 @@ outputs:
   chrome-upload-state:
     description: >
       Upload state returned by the Chrome Web Store API after the upload step.
-      Possible values: UPLOAD_STATE_UNSPECIFIED, SUCCESS, SUCCEEDED, FAILURE, IN_PROGRESS, NOT_FOUND.
+      Possible values: UPLOAD_STATE_UNSPECIFIED, SUCCESS, SUCCEEDED, FAILURE, NOT_FOUND.
 
   chrome-crx-version:
     description: >
@@ -227,7 +229,7 @@ outputs:
   edge-upload-status:
     description: >
       Final status of the upload operation.
-      Possible values: Succeeded, Failed, InProgress.
+      Possible values: Succeeded, Failed.
 
   edge-publish-operation-id:
     description: >
@@ -236,7 +238,7 @@ outputs:
   edge-publish-status:
     description: >
       Final status of the publish operation.
-      Possible values: Succeeded, Failed, InProgress.
+      Possible values: Succeeded, Failed.
 
 runs:
   using: 'node24'
