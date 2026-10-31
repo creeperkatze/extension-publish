@@ -6,6 +6,7 @@
   "scripts": {
     "build": "esbuild src/index.ts --bundle --platform=node --target=node24 --format=esm --minify --banner:js=\"import{createRequire}from'module';const require=createRequire(import.meta.url);\" --outfile=dist/index.js",
     "lint": "oxlint src",
+    "lint:fix": "oxlint src --fix",
     "typecheck": "tsc --noEmit",
     "preversion": "pnpm build && git add dist/",
     "release:patch": "pnpm version patch && git push && git push --tags",
