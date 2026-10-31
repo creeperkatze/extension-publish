@@ -62,7 +62,7 @@ All stores are optional, only the stores with provided inputs will run.
 
 1. Sign in to [addons.mozilla.org](https://addons.mozilla.org).
 2. Go to [API Credentials](https://addons.mozilla.org/developers/addon/api/key/).
-3. Click **Generate new credentials** - note the **JWT issuer** (API key) and **JWT secret** (API secret).
+3. Click **Generate new credentials**, note the **JWT issuer** (API key) and **JWT secret** (API secret).
 4. Your **Extension ID** is the add-on ID, slug, or GUID shown in the add-on's developer page (e.g. `{your-addon@example.com}`).
 
 | Secret | Where to find it |
@@ -77,7 +77,7 @@ All stores are optional, only the stores with provided inputs will run.
 
 1. Sign in to [Partner Center](https://partner.microsoft.com/dashboard/microsoftedge).
 2. Under **Microsoft Edge**, select **Publish API**.
-3. Click **Create API credentials** - note the **Client ID** and **API Key**.
+3. Click **Create API credentials**, note the **Client ID** and **API Key**.
 4. To find your **Product ID**, open your extension in Partner Center and copy the GUID from the URL or the **Extension identity** section.
 
 | Secret | Where to find it |
