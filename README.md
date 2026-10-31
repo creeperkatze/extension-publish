@@ -154,4 +154,4 @@ All stores are optional, only the stores with provided inputs will run.
 
 ## 📜 License
 
-AGPL-3.0
+MIT

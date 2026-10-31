@@ -16,7 +16,7 @@
   "type": "module",
   "keywords": [],
   "author": "creeperkatze",
-  "license": "AGPL-3.0-only",
+  "license": "MIT",
   "engines": {
     "node": ">=24"
   },
