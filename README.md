@@ -24,7 +24,7 @@ A GitHub Action to upload and publish browser extensions to the Chrome Web Store
     firefox-api-secret:   ${{ secrets.FIREFOX_API_SECRET }}
     firefox-extension-id: ${{ secrets.FIREFOX_EXTENSION_ID }}
     firefox-xpi-path:     ./extension.zip
-    firefox-license:      mpl-2.0
+    firefox-license:      MPL-2.0
 
     # Edge Add-ons
     edge-api-key:         ${{ secrets.EDGE_API_KEY }}
@@ -118,7 +118,7 @@ All stores are optional, only the stores with provided inputs will run.
 | `firefox-extension-id` | Yes | - | Add-on ID, slug, or GUID |
 | `firefox-xpi-path` | Yes | - | Path to the `.xpi` or `.zip` to upload.<br>`{version}` is replaced with the version from `version-file` |
 | `firefox-channel` | No | `listed` | `listed` or `unlisted` |
-| `firefox-license` | No | - | License slug - [list of valid license values](https://mozilla.github.io/addons-server/topics/api/licenses.html) |
+| `firefox-license` | No | - | License slug (e.g. `MPL-2.0`, `MIT`). See [valid license slugs](https://mozilla.github.io/addons-server/topics/api/licenses.html).
 | `firefox-approval-notes` | No | - | Internal notes for Mozilla reviewers |
 | `firefox-release-notes` | No | - | Release notes (plain string or `{"en-US":"..."}` JSON) |
 | `firefox-compatibility-firefox` | No | - | Firefox desktop compatibility: `true` (all versions), `109.0` (min only), or `109.0, 120.0` (min, max) |
